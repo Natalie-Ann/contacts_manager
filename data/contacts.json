@@ -1,0 +1,23 @@
+[
+  {
+    "full_name": "Jane Doe",
+    "phone_number": "123-456-7899",
+    "email": "test@test.com",
+    "tags": "friend",
+    "id": 1
+  },
+  {
+    "full_name": "John Example",
+    "phone_number": "123-456-7899",
+    "email": "email@email.com",
+    "tags": "coworker",
+    "id": 2
+  },
+  {
+    "full_name": "Test Person",
+    "phone_number": "123-456-7899",
+    "email": "test@test.com",
+    "tags": null,
+    "id": 3
+  }
+]

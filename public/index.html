@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Manager</title>
+    <link rel="stylesheet" href="stylesheets/copied_style.css">
+    <script src="javascripts/handlebars.js"></script>
+</head>
+<body>
+    <header class="bs-header">
+        <div class="container">
+          <a id="homePageLink" href="#home"><h1>Contact Manager</h1></a>
+          <p>An App to track your contacts!</p>
+        </div>
+      </header>
+
+    <div id="mainContainer" class="container">
+        <div class="row">
+            <div id="contactsBody" class="col-xs-12 main-container">
+                    <div id="addAndSearch" class="row well">
+                        <div class="text-center col-sm-6">
+                            <a id="displayAllContacts" class="btn btn-lg btn-outline">All Contacts</a>
+                            <a id="addContactButtonTop" class="btn btn-lg btn-outline">Add Contact</a>
+                        </div>
+                        <div class="text-center col-sm-6">
+                            <input id="searchBar" type="text" class="form-control contact-name-search" placeholder="Search...">
+                        </div>
+                    </div>
+                    <ul id="contactsList" class="media-list row contacts-container">
+                    </ul>
+                    <div id="noContacts" class="empty-contacts-placeholder">
+                        <div class="well text-center">
+                            <h3>There are no contacts.</h3> 
+                            <a id="addContactButtonBottom" class="btn btn-lg btn-outline">Add Contact</a>
+                        </div>
+                    </div>
+                    <div id="emptySearch" class="empty-search-contacts-placeholder">
+                        <div class="well text-center"><h3>There are no contacts matching '<strong id="searchValue"></strong>'</h3></div>
+                    </div>
+            </div>
+        </div>
+
+        <div id="addContactContainer">
+            <h2 class="page-header text-center"> Create Contact</h2>
+            <form id="addContactForm" role="form" class="form-horizontal contact-form">
+                <div class="form-group has-feedback form-group-name">
+                    <label for="full_name" class="col-sm-4 control-label">Full name:</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control contact-name-input" name="full_name" required>
+                        <small class="help-block">
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group has-feedback form-group-email">
+                    <label for="email" class="col-sm-4 control-label">Email address:</label>
+                    <div class="col-sm-6">
+                        <input type="email" class="form-control contact-email-input" name="email" required>
+                        <small class="help-block" title="testing whether this works">
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group has-feedback form-group-phone">
+                    <label for="phone_number" class="col-sm-4 control-label">Telephone number:</label>
+                    <div class="col-sm-6">
+                        <input type="tel" class="form-control contact-phone-input" name="phone_number" required>
+                        <small class="help-block">
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group has-feedback">
+                    <label for="tags" class="col-sm-4 control-label">Tags:</label>
+                    <div class="col-sm-6">
+                        <select id="tagOptions" class="form-control" name="tags" multiple></select>
+                    </div>
+                </div>
+                <div class="form-group has-feedback">
+                    <label for="tags" class="col-sm-4 control-label">Add new tag(s):</label>
+                    <div class="col-sm-6">
+                        <input type="text" id="textTag" class="form-control" name="tags" pattern="[\w\s]+" title="Separate tags with one space. Only alphanumeric characters allowed.">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-4 col-sm-3">
+                        <button type="submit" class="btn btn-outline btn-lg btn-block">Submit</button>
+                    </div>
+                    <div class="col-sm-3">
+                        <button id="cancelSubmit" type="button" class="btn-close-form btn btn-outline btn-lg btn-block">Cancel</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div id="editContactContainer"></div>
+  
+        <div class="footer text-center">
+          <p>Developed by <a href="http://www.launchschool.com">Launch School</a> and Natalie Martos</a>.</p>
+        </div>
+      </div>
+
+    <script id="displayContacts" type="text/x-handlebars">
+        {{#each contact}}
+        <li class="media col-md-3 col-sm-4">
+            <div class="media-heading">
+                <h3>{{full_name}}</h3>
+            </div>
+            <div class="media-body">
+                <dl><dt>Phone Number:</dt>
+                    <dd>{{phone_number}}</dd>
+                    <dt>Email:</dt>
+                    <dd>{{email}}</dd>
+                    {{#if tags}}
+                    <dt>Tags:</dt>
+                    <dd>
+                        {{#each tags}}
+                        <a>#{{this}}</a>
+                        {{/each}}
+                    </dd>
+                    {{else}}
+                    <dt>Tags:</>
+                        <dd>none</dd>
+                    {{/if}}
+                </dl>
+            </div>
+            <div class="contact-btn-wrapper">
+                <a id="Edit {{id}}" class="edit-contact btn btn-outline">Edit</a>
+                <a id="Delete {{id}}" class="delete-contact btn btn-outline">Delete</a>
+                </div>
+                <hr>
+            </li>
+            {{/each}}
+      </script>
+
+    <script id="editContactScript" type="text/x-handlebars">
+        <h2 class="page-header text-center"> Edit Contact</h2>
+        <form id="editContactForm" role="form" class="form-horizontal contact-form">
+            <div class="form-group has-feedback form-group-name">
+                <label for="full_name" class="col-sm-4 control-label">Full name:</label>
+                <div class="col-sm-6">
+                    <input name="full_name" id="full_name" type="text" value="{{full_name}}" class="form-control contact-name-input" required>
+                    <small class="help-block"></small>
+                </div>
+            </div>
+            <div class="form-group has-feedback form-group-email">
+                <label for="email" class="col-sm-4 control-label">Email address:</label>
+                <div class="col-sm-6">
+                    <input name="email" id="email" type="email" value="{{email}}" class="form-control contact-email-input" required>
+                    <small class="help-block"></small>
+                </div>
+            </div>
+            <div class="form-group has-feedback form-group-phone">
+                <label for="phone_number" class="col-sm-4 control-label">Telephone number:</label>
+                <div class="col-sm-6">
+                    <input name="phone_number" id="phone_number" type="tel" value="{{phone_number}}" class="form-control contact-phone-input" required>
+                    <small class="help-block"></small>
+                </div>
+            </div>
+            <div class="form-group has-feedback">
+                <label for="tags" class="col-sm-4 control-label">Tags:</label>
+                <div class="col-sm-6">
+                    <select id="tagEditOptions" class="form-control" name="tags" multiple></select>
+                </div>
+            </div>
+            <div class="form-group has-feedback">
+                <label for="tags" class="col-sm-4 control-label">Add new tag(s):</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="tags" name="tags">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-4 col-sm-3">
+                    <button id="submitEdit" type="submit" class="btn btn-outline btn-lg btn-block">Submit</button>
+                </div>
+                <div class="col-sm-3"><button id="cancelEdit" type="button" class="btn-close-form btn btn-outline btn-lg btn-block">Cancel</button></div>
+            </div>
+        </form>
+    </script>
+
+    <script src="javascripts/script_with_tags.js"></script>
+</body>
+</html>

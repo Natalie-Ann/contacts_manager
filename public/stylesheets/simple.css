@@ -1,0 +1,64 @@
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#addAndSearch, #contactTags {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+}
+
+.contactsBody {
+    display: flex;
+    box-sizing: border-box;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+}
+
+#contactsList {
+    display: contents;
+}
+
+.hidden {
+    display: none;
+}
+
+#addContactForm, #editContactForm, p, #noContacts {
+    text-align: center;
+} 
+
+li {
+    list-style-type: none;
+    padding-left: 15px;
+    padding-right: 15px;  
+}
+
+#tags {
+    display: flex;
+    justify-content: center;
+}
+
+a {
+    all: inherit;
+    background-color: rgb(41, 20, 133);
+    color: white;
+    /* padding: 0.5em; */
+    text-decoration: none;
+}
+
+a:hover {
+    cursor: pointer;
+    background-color: rgb(82, 111, 136);
+  }
+
