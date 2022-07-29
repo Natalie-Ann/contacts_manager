@@ -1,4 +1,4 @@
-![Contact Manage screenshot](/public/images/contacts_manager.png)
+![Contact Manage screenshot](/public/images/contacts_manager_screenshot.png)
 
 ## Contact Manager 
 
