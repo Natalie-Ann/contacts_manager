@@ -27,6 +27,7 @@ class Controller {
 
     async handleGetSpecificContact(id) {
         let contactObject = await this.model.getSpecificContact(id);
+        console.log(contactObject);
         this.view.displayEditContactForm(contactObject);
     }
 
@@ -293,6 +294,7 @@ class View {
             e.preventDefault();
             
             console.log('edit event');
+            console.log(e.target.id);
 
             if (e.target.id.startsWith('Edit')) {
                 let id = e.target.id.match(/[0-9]/gi).join('');
