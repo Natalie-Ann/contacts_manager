@@ -70,7 +70,7 @@ class Model {
     }
 
     async deleteContact(id) {
-        await fetch(`http://localhost:3000/api/contacts/${id}`, {
+        await fetch(`api/contacts/${id}`, {
             method: 'DELETE',
         })
         .then((response) => {
@@ -81,14 +81,14 @@ class Model {
     }
     
     async getSpecificContact(id) {
-        let contactObject = await fetch(`http://localhost:3000/api/contacts/${id}`)
+        let contactObject = await fetch(`api/contacts/${id}`)
         .then((response) => response.json());
 
         return contactObject;  
     }
 
     async editContact(contact, id) {
-        await fetch(`http://localhost:3000/api/contacts/${id}`, {
+        await fetch(`api/contacts/${id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
